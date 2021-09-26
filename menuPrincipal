@@ -2,3 +2,34 @@ lbl1 = Label(frame2,text="CODIGO:")
 lbl1.place(x=5,y=5)    
 self.txtCodigo=Entry(frame2)
 self.txtCodigo.place(x=5,y=25,width=190, height=20)
+
+#****Marlen****
+# VENTANA VERIFICACION CORRECTO
+# Verificacion Login - Opcion Acceso Correcto
+def exito_login():
+    global ventana_exito
+    ventana_exito = Toplevel(ventana_login)
+    ventana_exito.title("CORRECTO")
+    ventana_exito.geometry("250x200")
+    Label(ventana_exito, text="ACCESO CORRECTO", font=("Calibri", 12)).pack()
+    Button(ventana_exito, text="FINALIZAR", command=borrar_exito_login).pack()
+ 
+# VENTANA VERIFICACION INCORRECTO
+# Verificacion Login - Opcion Acceso Incorrecto
+def no_clave():
+    global ventana_no_clave
+    ventana_no_clave = Toplevel(ventana_login)
+    ventana_no_clave.title("ERROR")
+    ventana_no_clave.geometry("150x100")
+    Label(ventana_no_clave, text="CONTRASEÑA INCORRECTA ").pack()
+    Button(ventana_no_clave, text="OK", command=borrar_no_clave).pack()
+ 
+# VENTANA USUARIO NO ENCONTRADO
+# Verificacion Usuario - Opcion No encontrado
+def no_usuario():
+    global ventana_no_usuario
+    ventana_no_usuario = Toplevel(ventana_login)
+    ventana_no_usuario.title("ERROR")
+    ventana_no_usuario.geometry("150x100")
+    Label(ventana_no_usuario, text="USUARIO NO ENCONTRADO").pack()
+    Button(ventana_no_usuario, text="OK", command=borrar_no_usuario).pack()
