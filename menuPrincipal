@@ -55,3 +55,4 @@ def no_usuario():
     ventana_no_usuario.geometry("150x100")
     Label(ventana_no_usuario, text="USUARIO NO ENCONTRADO").pack()
     Button(ventana_no_usuario, text="OK", command=borrar_no_usuario).pack()
+#*******JUAN LUIS*******
