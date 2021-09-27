@@ -1,7 +1,27 @@
+#*******JULIO*******
 lbl1 = Label(frame2,text="CODIGO:")
 lbl1.place(x=5,y=5)    
 self.txtCodigo=Entry(frame2)
 self.txtCodigo.place(x=5,y=25,width=190, height=20)
+lbl2 = Label(frame2,text="TITULO: ")
+lbl2.place(x=5,y=55)
+self.txtTitulo=Entry(frame2)
+self.txtTitulo.place(x=5,y=75,width=190, height=20)
+
+lbl3 = Label(frame2,text="EDITORIAL: ")
+lbl3.place(x=5,y=105)        
+self.txtEditorial=Entry(frame2)
+self.txtEditorial.place(x=5,y=125,width=190, height=20)
+
+lbl4 = Label(frame2,text="AUTOR 1: ")
+lbl4.place(x=5,y=155)
+self.txtCurrency=Entry(frame2)
+self.txtCurrency.place(x=5,y=175,width=190, height=20)
+
+lbl5 = Label(frame2,text="AUTOR 2: ")
+lbl5.place(x=5,y=205)
+self.txtCurrency=Entry(frame2)
+self.txtCurrency.place(x=5,y=225,width=190, height=20)
 
 #****Marlen****
 # VENTANA VERIFICACION CORRECTO
