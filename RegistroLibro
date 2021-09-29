@@ -56,3 +56,50 @@ def no_usuario():
     Label(ventana_no_usuario, text="USUARIO NO ENCONTRADO").pack()
     Button(ventana_no_usuario, text="OK", command=borrar_no_usuario).pack()
 #*******JUAN LUIS*******
+from tkinter import *
+from tkinter import ttk
+
+
+def send_data():
+    tomo_data=tomo.get()
+    edicion_data=str(edicion.get())
+    estado_data=estado.get()
+
+    print(tomo_data,"\t",edicion_data,"\t",estado_data,"\t")
+    
+
+
+ventana=Tk()
+ventana.geometry("400x300")
+tomo=StringVar()
+edicion=StringVar()
+estado=StringVar()
+textoT=Label(ventana,text="TOMO:")
+textoT.place(x=150,y=10)
+textoT.config(bg="#16191C")
+textoT.config(font=("Arial",15))
+textoT.config(fg="#FFFFFF")
+lista_desplegableT=ttk.Combobox(ventana,textvariable=tomo, width=17)
+lista_desplegableT.place(x=150,y=40)
+opcionesT=["TOMO 1","TOMO 2", "TOMO 3"]
+lista_desplegableT['values']=opcionesT
+textoE=Label(ventana,text="EDICION:")
+textoE.place(x=150,y=80)
+textoE.config(bg="#16191C")
+textoE.config(font=("Arial",15))
+textoE.config(fg="#FFFFFF")
+cajaE=Entry(ventana,textvariable=edicion,width=21)
+cajaE.place(x=150,y=110)
+textoST=Label(ventana,text="ESTADO:")
+textoST.place(x=150,y=150)
+textoST.config(bg="#16191C")
+textoST.config(font=("Arial",15))
+textoST.config(fg="#FFFFFF")
+lista_desplegableST=ttk.Combobox(ventana,textvariable=estado,width=17)
+lista_desplegableST.place(x=150,y=180)
+opcionesST=["MALO","REGULAR", "BUENO"]
+lista_desplegableST['values']=opcionesST
+botonV=Button(ventana,text="VALIDAR DATOS",command=send_data)
+botonV.place(x=180,y=230)
+ventana['bg']='#16191C'
+ventana.mainloop()
