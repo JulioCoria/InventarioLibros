@@ -56,50 +56,165 @@ def no_usuario():
     Label(ventana_no_usuario, text="USUARIO NO ENCONTRADO").pack()
     Button(ventana_no_usuario, text="OK", command=borrar_no_usuario).pack()
 #*******JUAN LUIS*******
-from tkinter import *
+
+import re
+import tkinter as tk
+from tkinter import IntVar, StringVar, messagebox,Label
 from tkinter import ttk
 
+class FormularioRegistroLibro(tk.Tk):
 
-def send_data():
-    tomo_data=tomo.get()
-    edicion_data=str(edicion.get())
-    estado_data=estado.get()
+    def __init__(self):
+        super().__init__()
 
-    print(tomo_data,"\t",edicion_data,"\t",estado_data,"\t")
+        self.inicializar_gui()
+        self.definir_patrones_validaciones()
+
+
+    def inicializar_gui(self):
+        self.title('S. I. B. "CORAZON DE JESUS"')
+        self.minsize(400,350)  
+
+        
+
+        lbl_titulo=tk.Label(self, text='FORMULARIO REGISTRO LIBRO')
+        lbl_titulo.grid(row=0,column=1,pady=10)
+
+        frm_principal=tk.Frame(self, bd=8,relief='groove')
+        frm_principal.grid(row=1,column=1,padx=10,pady=10)
+
+        lbl_codigo=tk.Label(frm_principal,text='CODIGO',justify=tk.LEFT )
+        lbl_codigo.grid(row=0,column=0,sticky=tk.W)
+        self.txt_codigo=tk.Entry(frm_principal,width=20)
+        self.txt_codigo.grid(row=0,column=1)
+
+        lbl_titulo=tk.Label(frm_principal,text='TITULO')
+        lbl_titulo.grid(row=1,column=0,sticky=tk.W)
+        self.txt_titulo=tk.Entry(frm_principal,width=20)
+        self.txt_titulo.grid(row=1,column=1)
+
+        lbl_editorial=tk.Label(frm_principal,text='EDITORIAL')
+        lbl_editorial.grid(row=2,column=0,sticky=tk.W)
+        self.txt_editorial=tk.Entry(frm_principal,width=20)
+        self.txt_editorial.grid(row=2,column=1)
     
+        lbl_a1=tk.Label(frm_principal,text='AUTOR 1')
+        lbl_a1.grid(row=3,column=0,sticky=tk.W)
+        self.txt_a1=tk.Entry(frm_principal,width=20)
+        self.txt_a1.grid(row=3,column=1)
+
+        lbl_a2=tk.Label(frm_principal,text='AUTOR 2')
+        lbl_a2.grid(row=4,column=0,sticky=tk.W)
+        self.txt_a2=tk.Entry(frm_principal,width=20)
+        self.txt_a2.grid(row=4,column=1)
+
+        lbl_tomo=tk.Label(frm_principal,text='TOMO')
+        lbl_tomo.grid(row=5,column=0,sticky=tk.W)
+        self.cbx_tomo=ttk.Combobox(frm_principal,width=20)
+        paises=('Tomo I','Tomo II','Tomo III')
+        self.cbx_tomo['values']=paises
+        self.cbx_tomo.current(0)
+        self.cbx_tomo.grid(row=5,column=1)
+
+        lbl_edicion=tk.Label(frm_principal,text='EDICION')
+        lbl_edicion.grid(row=6,column=0,sticky=tk.W)
+        self.txt_edicion=tk.Entry(frm_principal,width=20)
+        self.txt_edicion.grid(row=6,column=1)
+
+        lbl_estado=tk.Label(frm_principal,text='ESTADO')
+        lbl_estado.grid(row=7,column=0,sticky=tk.W)
+        self.cbx_estado=ttk.Combobox(frm_principal,width=20)
+        paises=('Malo','Regular','Bueno')
+        self.cbx_estado['values']=paises
+        self.cbx_estado.current(0)
+        self.cbx_estado.grid(row=7,column=1)
+
+        btn_guardar=tk.Button(frm_principal,text='guardar',command=self.guardar)
+        btn_guardar.grid(row=8,column=2)
+
+        btn_limpiar=tk.Button(frm_principal,text='Limpiar',command=self.Limpiar)
+        btn_limpiar.grid(row=8,column=3)
+
+        btn_salir=tk.Button(frm_principal,text='salir',command=self.salir)
+        btn_salir.grid(row=8,column=4)
+
+    def definir_patrones_validaciones(self):
+        patron_codigo=r'^[^A-Za-z]*$'
+        self.regex_codigo=re.compile(patron_codigo)
+
+        patron_titulo=r'^[^0-9]*$'
+        self.regex_titulo=re.compile(patron_titulo)
+
+        patron_editorial=r'^[^0-9]*$'
+        self.regex_editorial=re.compile(patron_editorial)
+
+        patron_a1=r'^[^0-9]*$'
+        self.regex_a1=re.compile(patron_a1)
+
+        patron_a2=r'^[^0-9]*$'
+        self.regex_a2=re.compile(patron_a2)
+
+        patron_edicion=r'^[^0-9]*$'
+        self.regex_edicion=re.compile(patron_edicion)
 
 
-ventana=Tk()
-ventana.geometry("400x300")
-tomo=StringVar()
-edicion=StringVar()
-estado=StringVar()
-textoT=Label(ventana,text="TOMO:")
-textoT.place(x=150,y=10)
-textoT.config(bg="#16191C")
-textoT.config(font=("Arial",15))
-textoT.config(fg="#FFFFFF")
-lista_desplegableT=ttk.Combobox(ventana,textvariable=tomo, width=17)
-lista_desplegableT.place(x=150,y=40)
-opcionesT=["TOMO 1","TOMO 2", "TOMO 3"]
-lista_desplegableT['values']=opcionesT
-textoE=Label(ventana,text="EDICION:")
-textoE.place(x=150,y=80)
-textoE.config(bg="#16191C")
-textoE.config(font=("Arial",15))
-textoE.config(fg="#FFFFFF")
-cajaE=Entry(ventana,textvariable=edicion,width=21)
-cajaE.place(x=150,y=110)
-textoST=Label(ventana,text="ESTADO:")
-textoST.place(x=150,y=150)
-textoST.config(bg="#16191C")
-textoST.config(font=("Arial",15))
-textoST.config(fg="#FFFFFF")
-lista_desplegableST=ttk.Combobox(ventana,textvariable=estado,width=17)
-lista_desplegableST.place(x=150,y=180)
-opcionesST=["MALO","REGULAR", "BUENO"]
-lista_desplegableST['values']=opcionesST
-botonV=Button(ventana,text="VALIDAR DATOS",command=send_data)
-botonV.place(x=180,y=230)
-ventana['bg']='#16191C'
-ventana.mainloop()
+
+    def guardar(self):
+
+        codigo=self.txt_codigo.get()
+        if re.match(self.regex_codigo,codigo) is None:
+            messagebox.showwarning('Mensaje','solo se acepta numeros')
+            return
+
+        titulo=self.txt_titulo.get()
+        if re.match(self.regex_titulo,titulo) is None:
+            messagebox.showwarning('Mensaje','solo letras en el campo Titulo')
+            return
+
+        editorial=self.txt_editorial.get()
+        if re.match(self.regex_editorial,editorial) is None:
+            messagebox.showwarning('Mensaje','solo letras en el campo editorial')
+            return
+
+        a1=self.txt_a1.get()
+        if re.match(self.regex_a1,a1) is None:
+            messagebox.showwarning('Mensaje','solo letras en el campo a1')
+            return
+
+        a2=self.txt_a2.get()
+        if re.match(self.regex_a2,a2) is None:
+            messagebox.showwarning('Mensaje','solo letras en el campo a2')
+            return
+
+        tomo=self.cbx_tomo.get()
+
+        edicion=self.txt_edicion.get()
+        if re.match(self.regex_edicion,edicion) is None:
+            messagebox.showwarning('Mensaje','solo letras en el campo edicion')
+            return
+
+        estado=self.cbx_estado.get()
+      
+        print(codigo,"\t",titulo,"\t",editorial,"\t",a1,"\t",a2,"\t",tomo,"\t",edicion,"\t",estado)
+
+
+    def Limpiar(self):
+        self.txt_codigo.delete(0,'end')
+        self.txt_titulo.delete(0,'end')
+        self.txt_editorial.delete(0,'end')
+        self.txt_a1.delete(0,'end')
+        self.txt_a2.delete(0,'end')
+        self.cbx_tomo.delete(0,'end')
+        self.txt_edicion.delete(0,'end')
+        self.cbx_estado.delete(0,'end')
+
+    def salir(self):
+        self.destroy()
+
+
+def main():
+    app = FormularioRegistroLibro()
+    app.mainloop()
+    
+if __name__ == '__main__':
+    main()
